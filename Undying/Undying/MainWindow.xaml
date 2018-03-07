@@ -1,12 +1,25 @@
-﻿<Window x:Class="Undying.MainWindow"
+﻿<Window x:Name="MainForm" x:Class="Undying.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Undying"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="Лабораторная работа ТВОП (Вересковский С. В. гр. 551006)" Height="250" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="0,0,4,0">
+        <Grid x:Name="Input_Grid" Margin="10,0,10,35">
+            <Border BorderBrush="Black" BorderThickness="1"/>
+            <Label x:Name="InfoInputGrid_Label" Content="Введите стороны треугольника" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" RenderTransformOrigin="0.473,0.626"/>
+            <Label x:Name="A_Label" Content="Длина стороны A:" HorizontalAlignment="Center" Margin="82,31,230,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="A_TextBox" HorizontalAlignment="Left" Height="23" Margin="203,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+            <Label x:Name="B_Label" Content="Длина стороны B:" HorizontalAlignment="Center" Margin="82,62,230,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="B_TextBox" HorizontalAlignment="Left" Height="23" Margin="203,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+            <Label x:Name="C_Label" Content="Длина стороны C:" HorizontalAlignment="Center" Margin="82,93,230,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="C_TextBox" HorizontalAlignment="Left" Height="23" Margin="203,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+            <Button x:Name="Help_Button" Content="Помощь" HorizontalAlignment="Left" Margin="82,121,0,0" VerticalAlignment="Top" Width="108"/>
+            <Button x:Name="ClearAllFields_Button" Content="Очистить все поля" HorizontalAlignment="Left" Margin="203,121,0,0" VerticalAlignment="Top" Width="130"/>
+            <Button x:Name="Accept_Button" Content="Определить тип треугольника" HorizontalAlignment="Left" VerticalAlignment="Top" Width="251" Margin="82,153,0,0"/>
+        </Grid>
+        <Label x:Name="Result_Label" Content="" HorizontalAlignment="Center" Margin="10,192,0,0" VerticalAlignment="Top" Width="420" FontWeight="Bold"/>
     </Grid>
 </Window>
