@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Undying
@@ -53,10 +54,28 @@ namespace Undying
 
         private void Accept_Button_Click(object sender, RoutedEventArgs e)
         {
-            double a_side = double.Parse(A_TextBox.Text);
-            double b_side = double.Parse(B_TextBox.Text);
-            double c_side = double.Parse(C_TextBox.Text);
-            string result = GetTriangleType(a_side, b_side, c_side);
+            string result = "";
+            try
+            {
+                double a_side = double.Parse(A_TextBox.Text);
+                double b_side = double.Parse(B_TextBox.Text);
+                double c_side = double.Parse(C_TextBox.Text);
+                if ((a_side <= 0) || (b_side <= 0) || (c_side <= 0))
+                    throw new ArgumentException();
+                result = GetTriangleType(a_side, b_side, c_side);
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("Введённое число меньше либо равно нулю. Допустимый промежуток (0; 1,7 × 10^308].", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Введённое число слишком большое. Допустимый промежуток (0; 1,7 × 10^308]", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Необходимо ввести число.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             Result_Label.Content = result;
         }
 
@@ -66,9 +85,11 @@ namespace Undying
             if ((a_side == b_side) && (c_side == b_side))
                 result = "Треугольник равносторонний";
             else
+            {
                 result = "Треугольник неравносторонний";
-            if ((a_side == b_side) || (a_side == c_side) || (b_side == c_side))
-                result = "Треугольник равнобедренный";
+                if ((a_side == b_side) || (a_side == c_side) || (b_side == c_side))
+                    result = "Треугольник равнобедренный";
+            }
             return result;
         }
     }
