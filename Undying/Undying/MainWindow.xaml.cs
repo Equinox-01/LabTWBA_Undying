@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Undying
 {
@@ -33,6 +21,7 @@ namespace Undying
                 ClearAllFields_Button.IsEnabled = true;
             if ((A_TextBox.Text == "") && (B_TextBox.Text == "") && (C_TextBox.Text == ""))
                 ClearAllFields_Button.IsEnabled = false;
+            Result_Label.Content = "";
         }
 
         private void Help_Button_Click(object sender, RoutedEventArgs e)
@@ -53,6 +42,34 @@ namespace Undying
         private void C_TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             CheckTextBoxState();
+        }
+
+        private void ClearAllFields_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Вы действительно хотите очистить все поля ?", "Вы уверены?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+                A_TextBox.Text = B_TextBox.Text = C_TextBox.Text = "";
+        }
+
+        private void Accept_Button_Click(object sender, RoutedEventArgs e)
+        {
+            double a_side = double.Parse(A_TextBox.Text);
+            double b_side = double.Parse(B_TextBox.Text);
+            double c_side = double.Parse(C_TextBox.Text);
+            string result = GetTriangleType(a_side, b_side, c_side);
+            Result_Label.Content = result;
+        }
+
+        private string GetTriangleType(double a_side, double b_side, double c_side)
+        {
+            string result = "";
+            if ((a_side == b_side) && (c_side == b_side))
+                result = "Треугольник равносторонний";
+            else
+                result = "Треугольник неравносторонний";
+            if ((a_side == b_side) || (a_side == c_side) || (b_side == c_side))
+                result = "Треугольник равнобедренный";
+            return result;
         }
     }
 }
