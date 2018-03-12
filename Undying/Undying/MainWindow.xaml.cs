@@ -20,9 +20,39 @@ namespace Undying
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void CheckTextBoxState()
+        {
+            Accept_Button.IsEnabled = ((A_TextBox.Text != "") && (B_TextBox.Text != "") && (C_TextBox.Text != ""));
+            if ((A_TextBox.Text != "") || (B_TextBox.Text != "") || (C_TextBox.Text != ""))
+                ClearAllFields_Button.IsEnabled = true;
+            if ((A_TextBox.Text == "") && (B_TextBox.Text == "") && (C_TextBox.Text == ""))
+                ClearAllFields_Button.IsEnabled = false;
+        }
+
+        private void Help_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Введите в поля длину сторон треугольника.", "Помощь", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void A_TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CheckTextBoxState();
+        }
+
+        private void B_TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CheckTextBoxState();
+        }
+
+        private void C_TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CheckTextBoxState();
         }
     }
 }
