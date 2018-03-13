@@ -11,11 +11,11 @@
             <Border BorderBrush="Black" BorderThickness="1"/>
             <Label x:Name="InfoInputGrid_Label" Content="Введите стороны треугольника" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" RenderTransformOrigin="0.473,0.626"/>
             <Label x:Name="A_Label" Content="Длина стороны A:" HorizontalAlignment="Center" Margin="82,31,230,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="A_TextBox" HorizontalAlignment="Left" Height="23" Margin="203,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" TextChanged="A_TextBox_TextChanged" PreviewLostKeyboardFocus="A_TextBox_PreviewLostKeyboardFocus"/>
+            <TextBox x:Name="A_TextBox" HorizontalAlignment="Left" Height="23" Margin="203,34,0,0" VerticalAlignment="Top" Width="130" TextChanged="A_TextBox_TextChanged" PreviewLostKeyboardFocus="A_TextBox_PreviewLostKeyboardFocus"/>
             <Label x:Name="B_Label" Content="Длина стороны B:" HorizontalAlignment="Center" Margin="82,62,230,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="B_TextBox" HorizontalAlignment="Left" Height="23" Margin="203,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" TextChanged="B_TextBox_TextChanged" PreviewLostKeyboardFocus="B_TextBox_PreviewLostKeyboardFocus"/>
+            <TextBox x:Name="B_TextBox" HorizontalAlignment="Left" Height="23" Margin="203,65,0,0" VerticalAlignment="Top" Width="130" TextChanged="B_TextBox_TextChanged" PreviewLostKeyboardFocus="B_TextBox_PreviewLostKeyboardFocus"/>
             <Label x:Name="C_Label" Content="Длина стороны C:" HorizontalAlignment="Center" Margin="82,93,230,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="C_TextBox" HorizontalAlignment="Left" Height="23" Margin="203,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" TextChanged="C_TextBox_TextChanged" PreviewLostKeyboardFocus="C_TextBox_PreviewLostKeyboardFocus"/>
+            <TextBox x:Name="C_TextBox" HorizontalAlignment="Left" Height="23" Margin="203,93,0,0" VerticalAlignment="Top" Width="130" TextChanged="C_TextBox_TextChanged" PreviewLostKeyboardFocus="C_TextBox_PreviewLostKeyboardFocus"/>
             <Button x:Name="Help_Button" Content="Помощь" HorizontalAlignment="Left" Margin="82,121,0,0" VerticalAlignment="Top" Width="108" Click="Help_Button_Click"/>
             <Button x:Name="ClearAllFields_Button" Content="Очистить все поля" HorizontalAlignment="Left" Margin="203,121,0,0" VerticalAlignment="Top" Width="130" IsEnabled="False" Click="ClearAllFields_Button_Click"/>
             <Button x:Name="Accept_Button" Content="Определить тип треугольника" HorizontalAlignment="Left" VerticalAlignment="Top" Width="251" Margin="82,153,0,0" IsEnabled="False" Click="Accept_Button_Click"/>
