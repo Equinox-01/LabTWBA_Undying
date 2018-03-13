@@ -4,9 +4,6 @@ using System.Windows.Controls;
 
 namespace Undying
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
 
@@ -27,21 +24,27 @@ namespace Undying
 
         private void Help_Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Введите в поля длину сторон треугольника.", "Помощь", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Введите в поля длину сторон треугольника.\nДопустимый промежуток (0; 1,7 × 10^308].", "Помощь", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void A_TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            A_TextBox.Text = Helper.Correct_Data_Double(A_TextBox.Text);
+            A_TextBox.SelectionStart = A_TextBox.Text.Length;
             CheckTextBoxState();
         }
 
         private void B_TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            B_TextBox.Text = Helper.Correct_Data_Double(B_TextBox.Text);
+            B_TextBox.SelectionStart = B_TextBox.Text.Length;
             CheckTextBoxState();
         }
 
         private void C_TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            C_TextBox.Text = Helper.Correct_Data_Double(C_TextBox.Text);
+            C_TextBox.SelectionStart = C_TextBox.Text.Length;
             CheckTextBoxState();
         }
 
@@ -66,11 +69,11 @@ namespace Undying
             }
             catch (ArgumentException)
             {
-                MessageBox.Show("Введённое число меньше либо равно нулю. Допустимый промежуток (0; 1,7 × 10^308].", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Введённое число меньше либо равно нулю. \nДопустимый промежуток (0; 1,7 × 10^308].", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (OverflowException)
             {
-                MessageBox.Show("Введённое число слишком большое. Допустимый промежуток (0; 1,7 × 10^308]", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Введённое число слишком большое. \nДопустимый промежуток (0; 1,7 × 10^308].", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (FormatException)
             {
@@ -83,14 +86,29 @@ namespace Undying
         {
             string result = "";
             if ((a_side == b_side) && (c_side == b_side))
-                result = "Треугольник равносторонний";
+                result = "Треугольник равносторонний.";
             else
             {
-                result = "Треугольник неравносторонний";
+                result = "Треугольник неравносторонний.";
                 if ((a_side == b_side) || (a_side == c_side) || (b_side == c_side))
-                    result = "Треугольник равнобедренный";
+                    result = "Треугольник равнобедренный.";
             }
             return result;
+        }
+
+        private void A_TextBox_PreviewLostKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            Helper.LeaveControl(sender as TextBox);
+        }
+
+        private void B_TextBox_PreviewLostKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            Helper.LeaveControl(sender as TextBox);
+        }
+
+        private void C_TextBox_PreviewLostKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
+        {
+            Helper.LeaveControl(sender as TextBox);
         }
     }
 }
