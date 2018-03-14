@@ -60,16 +60,12 @@ namespace Undying
             string result = "";
             try
             {
-                double a_side = double.Parse(A_TextBox.Text);
-                double b_side = double.Parse(B_TextBox.Text);
-                double c_side = double.Parse(C_TextBox.Text);
-                if ((a_side <= 0) || (b_side <= 0) || (c_side <= 0))
-                    throw new ArgumentException();
-                result = GetTriangleType(a_side, b_side, c_side);
+                var triangle = new Triangle(A_TextBox.Text, B_TextBox.Text, C_TextBox.Text);
+                result = triangle.GetTriangleType();
             }
-            catch (ArgumentException)
+            catch (ArgumentException error)
             {
-                MessageBox.Show("Введённое число меньше либо равно нулю. \nДопустимый промежуток (0; 1,7 × 10^308].", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(error.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (OverflowException)
             {
@@ -82,19 +78,7 @@ namespace Undying
             Result_Label.Content = result;
         }
 
-        private string GetTriangleType(double a_side, double b_side, double c_side)
-        {
-            string result = "";
-            if ((a_side == b_side) && (c_side == b_side))
-                result = "Треугольник равносторонний.";
-            else
-            {
-                result = "Треугольник неравносторонний.";
-                if ((a_side == b_side) || (a_side == c_side) || (b_side == c_side))
-                    result = "Треугольник равнобедренный.";
-            }
-            return result;
-        }
+        
 
         private void A_TextBox_PreviewLostKeyboardFocus(object sender, System.Windows.Input.KeyboardFocusChangedEventArgs e)
         {
