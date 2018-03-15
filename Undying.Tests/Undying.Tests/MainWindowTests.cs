@@ -7,13 +7,33 @@ namespace Undying.Tests
     public class MainWindowTests
     {
         Triangle obj;
+        /*
+         *  equilateral
+            isosceles
+            not equilateral
+         */
+        [TestMethod]
+        public void Equilateral_Data()
+        {
+            obj = new Triangle("4", "4", "4");
+            var result = obj.GetTriangleType();
+            Assert.IsTrue(result == "Треугольник равносторонний.");
+        }
 
         [TestMethod]
-        public void Valid_Data()
+        public void Isosceles_Data()
+        {
+            obj = new Triangle("12", "12", "20");
+            var result = obj.GetTriangleType();
+            Assert.IsTrue(result == "Треугольник равнобедренный.");
+        }
+
+        [TestMethod]
+        public void NotEquilateral_Data()
         {
             obj = new Triangle("6", "8", "10");
             var result = obj.GetTriangleType();
-            Assert.IsTrue(result != "");
+            Assert.IsTrue(result == "Треугольник неравносторонний.");
         }
 
         [TestMethod]
