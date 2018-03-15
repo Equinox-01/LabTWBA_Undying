@@ -22,9 +22,8 @@ namespace Undying
         {
             if (sender.Text != "")
             {
-                if (sender.Text[sender.Text.Length - 1] == ',')
-                    sender.Text.Remove(sender.Text.Length - 1);
-                sender.Text = double.Parse(sender.Text.ToString()).ToString();
+                if (sender.Text == "0")
+                    sender.Text = "";
             }
         }
 
@@ -45,7 +44,7 @@ namespace Undying
                 {
                     try
                     {
-                        output.Insert(0, (double.Parse(indata.ToString())).ToString(), 1);
+                        output.Insert(0, (int.Parse(indata.ToString())).ToString(), 1);
                     }
                     catch
                     {
@@ -60,6 +59,36 @@ namespace Undying
                 }
         }
 
+        public static string Correct_Data_Int(string indata)
+        {
+            if (indata == "")
+                return indata;
+            StringBuilder tmp = new StringBuilder(indata);
+            for (int i = 0; i < tmp.Length; i++)
+            {
+                bool isModified = false;
+                if (!(ContainNumbers(tmp[i])))
+                {
+                    tmp = Replacement(tmp, i);
+                    isModified = true;
+                }
+                if (isModified)
+                {
+                    tmp.Remove(tmp.Length - 1, 1);
+                    i--;
+                }
+            }
+            try
+            {
+                CorrectNotRelevantWriting(tmp);
+            }
+            catch (OverflowException)
+            {
+                tmp = new StringBuilder("");
+                MessageBox.Show("Введённое число слишком большое.\nДопустимый промежуток от 1 до 2^16 - 1.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return tmp.ToString();
+        }
         public static string Correct_Data_Double(string indata)
         {
             if (indata == "")
