@@ -48,7 +48,7 @@ namespace Undying
                     }
                     catch
                     {
-                        throw new OverflowException("Введённое число слишком большое.\nДопустимый промежуток (0; 1,7 × 10^308].");
+                        throw new OverflowException("Введённое число слишком большое.\nДопустимый промежуток от 1 до 2^16 - 1.");
                     }
                     if (indata.Length >= 2)
                         if ((indata[0] == '0') && (indata[1] != ','))

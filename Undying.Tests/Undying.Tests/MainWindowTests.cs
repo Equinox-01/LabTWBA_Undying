@@ -7,13 +7,57 @@ namespace Undying.Tests
     public class MainWindowTests
     {
         Triangle obj;
-        /*
-         *  equilateral
-            isosceles
-            not equilateral
-         */
+        //Минимальные значения
         [TestMethod]
-        public void Equilateral_Data()
+        public void Min_Equilateral_Data()
+        {
+            obj = new Triangle("1", "1", "1");
+            var result = obj.GetTriangleType();
+            Assert.IsTrue(result == "Треугольник равносторонний.");
+        }
+
+        [TestMethod]
+        public void Min_Isosceles_Data()
+        {
+            obj = new Triangle("2", "2", "1");
+            var result = obj.GetTriangleType();
+            Assert.IsTrue(result == "Треугольник равнобедренный.");
+        }
+
+        [TestMethod]
+        public void Min_NotEquilateral_Data()
+        {
+            obj = new Triangle("3", "4", "2");
+            var result = obj.GetTriangleType();
+            Assert.IsTrue(result == "Треугольник неравносторонний.");
+        }
+        //Максимальные значения
+        [TestMethod]
+        public void Max_Equilateral_Data()
+        {
+            obj = new Triangle("494967295", "494967295", "494967295");
+            var result = obj.GetTriangleType();
+            Assert.IsTrue(result == "Треугольник равносторонний.");
+        }
+
+        [TestMethod]
+        public void Max_Isosceles_Data()
+        {
+            obj = new Triangle("494967295", "494967295", "494967294");
+            var result = obj.GetTriangleType();
+            Assert.IsTrue(result == "Треугольник равнобедренный.");
+        }
+
+        [TestMethod]
+        public void Max_NotEquilateral_Data()
+        {
+            obj = new Triangle("494967295", "494967294", "494967293");
+            var result = obj.GetTriangleType();
+            Assert.IsTrue(result == "Треугольник неравносторонний.");
+        }
+        //Средние значения
+        [TestMethod]
+        public void Medium_Equilateral_Data()
         {
             obj = new Triangle("4", "4", "4");
             var result = obj.GetTriangleType();
@@ -21,7 +65,7 @@ namespace Undying.Tests
         }
 
         [TestMethod]
-        public void Isosceles_Data()
+        public void Medium_Isosceles_Data()
         {
             obj = new Triangle("12", "12", "20");
             var result = obj.GetTriangleType();
@@ -29,13 +73,12 @@ namespace Undying.Tests
         }
 
         [TestMethod]
-        public void NotEquilateral_Data()
+        public void Medium_NotEquilateral_Data()
         {
             obj = new Triangle("6", "8", "10");
             var result = obj.GetTriangleType();
             Assert.IsTrue(result == "Треугольник неравносторонний.");
         }
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void NegativeNumber_Data()
@@ -49,7 +92,7 @@ namespace Undying.Tests
         [ExpectedException(typeof(OverflowException))]
         public void OverflowNumber_Data()
         {
-            obj = new Triangle("10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", "1", "1");
+            obj = new Triangle("4294967297", "1", "1");
             obj.GetTriangleType();
             Assert.IsTrue(true);
         }

@@ -73,7 +73,7 @@ namespace Undying
             }
             catch (FormatException)
             {
-                MessageBox.Show("Необходимо ввести число.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Необходимо ввести число.  Допустимый промежуток от 1; 2^16 - 1.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             Result_Label.Content = result;
         }

@@ -23,11 +23,8 @@ namespace Undying
             this.c_side = int.Parse(c_side);
             if ((this.a_side <= 0) || (this.b_side <= 0) || (this.c_side <= 0))
                 throw new ArgumentException("Введённое число меньше либо равно нулю. \nДопустимый промежуток от 1 до 2^16 - 1.");
-            double p = (this.a_side + this.b_side + this.c_side) / 2;
-            if (!(Math.Sqrt(p * (p - this.a_side) * (p - this.b_side) * (p - this.c_side)) < EPS) && 
-                !((this.a_side < this.b_side + this.c_side) && (this.b_side < this.a_side + this.c_side) && (this.c_side < this.a_side + this.b_side)))
-                throw new ArgumentException("Описанный треугольник является вырожденным");
-
+            if (!((this.a_side < this.b_side + this.c_side) && (this.b_side < this.a_side + this.c_side) && (this.c_side < this.a_side + this.b_side)))
+                throw new ArgumentException("Описанный треугольник является вырожденным. В треугольнике сумма двух сторон должна быть больше третьей стороны");
         }
 
         public string GetTriangleType()
