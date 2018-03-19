@@ -42,16 +42,9 @@ namespace Undying
             if (indata.ToString() != "")
                 if (indata[indata.Length - 1] != ',')
                 {
-                    try
-                    {
-                        output.Insert(0, (int.Parse(indata.ToString())).ToString(), 1);
-                    }
-                    catch
-                    {
-                        throw new OverflowException("Введённое число слишком большое.\nДопустимый промежуток от 1 до 2^16 - 1.");
-                    }
+                    output.Insert(0, (int.Parse(indata.ToString())).ToString(), 1);
                     if (indata.Length >= 2)
-                        if ((indata[0] == '0') && (indata[1] != ','))
+                        if (indata[0] == '0')
                         {
                             indata = Replacement(indata, 0);
                             indata.Length -= 1;
@@ -85,7 +78,12 @@ namespace Undying
             catch (OverflowException)
             {
                 tmp = new StringBuilder("");
-                MessageBox.Show("Введённое число слишком большое.\nДопустимый промежуток от 1 до 2^16 - 1.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Введенное число слишком большое.\nДопустимый промежуток от 1 до 2^16 - 1.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (FormatException)
+            {
+                tmp = new StringBuilder("");
+                MessageBox.Show("Введённы символы. Введите число.\nДопустимый промежуток от 1 до 2^16 - 1.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             return tmp.ToString();
         }
